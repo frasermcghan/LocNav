@@ -20,17 +20,17 @@ From: nvidia/cudagl:11.4.0-base-ubuntu20.04
     # install orbslam2 dependencies
     apt-get -y install libeigen3-dev libopencv-dev libopengl-dev libgl1-mesa-dev libglew-dev libffi-dev libtiff-dev
 
-    cd /mnt/orb-slam2/Thirdparty/DBoW2
+    cd /mnt/ORB_SLAM2/Thirdparty/DBoW2
     rm -rf build && mkdir build && cd build
     cmake ..
     make -j
 
-    cd /mnt/orb-slam2/Thirdparty/g2o
+    cd /mnt/ORB_SLAM2/Thirdparty/g2o
     rm -rf build && mkdir build && cd build
     cmake ..
     make -j
 
-    cd /mnt/orb-slam2/Thirdparty/Pangolin
+    cd /mnt/ORB_SLAM2/Thirdparty/Pangolin
     rm -rf build && mkdir build && cd build
     cmake ..
     make -j
@@ -45,7 +45,7 @@ From: nvidia/cudagl:11.4.0-base-ubuntu20.04
     pip install -e habitat-baselines
 
     # install orbslam2
-    cd /mnt/orb-slam2
+    cd /mnt/ORB_SLAM2
     rm -rf build && mkdir build && cd build
     cmake ..
     make -j
