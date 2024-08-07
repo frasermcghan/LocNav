@@ -1,0 +1,7 @@
+[submodule "habitat-lab"]
+	path = habitat-lab
+	url = git@github.com:frasermcghan/habitat-lab.git
+	branch = locnav
+[submodule "ORB_SLAM2"]
+	path = ORB_SLAM2
+	url = git@github.com:frasermcghan/ORB_SLAM2.git

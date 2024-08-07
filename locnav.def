@@ -1,0 +1,57 @@
+BootStrap: docker
+From: nvidia/cudagl:11.4.0-base-ubuntu20.04
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    
+    # install system packages
+    apt-get -y update
+    apt-get -y install wget build-essential
+
+    # install conda
+    wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.10.0-1-Linux-x86_64.sh -O miniconda.sh
+    bash miniconda.sh -b -p /opt/miniconda
+    . /opt/miniconda/etc/profile.d/conda.sh
+
+    # create env
+    conda create -n habitat python=3.9 cmake=3.14.0
+    conda activate habitat
+
+    # install orbslam2 dependencies
+    apt-get -y install libeigen3-dev libopencv-dev libopengl-dev libgl1-mesa-dev libglew-dev libffi-dev libtiff-dev
+
+    cd /mnt/orb-slam2/Thirdparty/DBoW2
+    rm -rf build && mkdir build && cd build
+    cmake ..
+    make -j
+
+    cd /mnt/orb-slam2/Thirdparty/g2o
+    rm -rf build && mkdir build && cd build
+    cmake ..
+    make -j
+
+    cd /mnt/orb-slam2/Thirdparty/Pangolin
+    rm -rf build && mkdir build && cd build
+    cmake ..
+    make -j
+
+    # install habitat-sim
+    conda install habitat-sim=0.2.4 withbullet headless -c conda-forge -c aihabitat
+    conda install libffi==3.3
+
+    # install habitat-lab
+    cd /mnt/habitat-lab
+    pip install -e habitat-lab
+    pip install -e habitat-baselines
+
+    # install orbslam2
+    cd /mnt/orb-slam2
+    rm -rf build && mkdir build && cd build
+    cmake ..
+    make -j
+
+    # copy python bindings to conda env
+    cp ../lib/orbslam2.cpython-39-x86_64-linux-gnu.so $CONDA_PREFIX/lib/python3.9/site-packages
+
+%environment
+    export PATH="/opt/miniconda/bin:$PATH"
