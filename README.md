@@ -1,12 +1,19 @@
 # LocNav-Experiments
+![](./trained_agent_orbslam.gif)
 
 This is the code used to run the experiments for the TAROS 2024 paper:
 
 **Localisation-Aware Fine-Tuning for Realistic PointGoal Navigation**  
 Fraser McGhan, Ze Ji, and Raphael Grech  
 Cardiff University, Spirent Communications
-
-![](./trained_agent_orbslam.gif)
+```
+@inproceedings{mcghan2024locnav,
+  title     =     {Localisation-Aware Fine-Tuning for Realistic PointGoal Navigation},
+  author    =     {Fraser McGhan and Ze Ji and Raphael Grech},
+  booktitle =     {Towards Autonomous Robotic Systems (TAROS)},
+  year      =     {2024}
+}
+```
 
 ## Setup
 ```
