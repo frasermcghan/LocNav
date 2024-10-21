@@ -1,4 +1,4 @@
-# LocNav-Experiments
+# LocNav
 ![](./trained_agent_orbslam.gif)
 
 This is the code used to run the experiments for the TAROS 2024 paper:
